@@ -27,6 +27,5 @@ class MemoListView: BaseView {
             $0.leadingMargin.equalTo(20)
             $0.trailingMargin.bottomMargin.equalTo(-20)
         }
-        
     }
 }

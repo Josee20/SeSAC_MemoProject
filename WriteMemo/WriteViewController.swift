@@ -55,6 +55,7 @@ class WriteViewController: BaseViewController {
         }
     
         repository.addMemo(title: title, date: Date(), content: subTitle, favorite: false)
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: 공유버튼클릭

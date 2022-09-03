@@ -26,4 +26,5 @@ extension MemoListViewController {
         self.navigationController?.pushViewController(vc, animated: true)
         vc.navigationController?.isToolbarHidden = true
     }
+    
 }
