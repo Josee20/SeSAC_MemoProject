@@ -23,7 +23,8 @@ class MemoListView: BaseView {
     override func setConstraints() {
         
         tableView.snp.makeConstraints {
-            $0.leadingMargin.topMargin.equalTo(20)
+            $0.topMargin.equalTo(8)
+            $0.leadingMargin.equalTo(20)
             $0.trailingMargin.bottomMargin.equalTo(-20)
         }
         

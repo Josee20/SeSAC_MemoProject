@@ -66,8 +66,8 @@ class MemoListTableViewCell: BaseTableViewCell {
         memoContentLabel.snp.makeConstraints {
             $0.topMargin.equalTo(memoTitleLabel.snp.bottom).offset(spacing)
             $0.bottomMargin.equalTo(-spacing)
+            
         }
-        
         
 //        stackView.snp.makeConstraints {
 //            $0.leadingMargin.topMargin.equalTo(spacing)
