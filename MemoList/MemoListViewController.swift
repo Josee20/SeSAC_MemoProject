@@ -16,8 +16,12 @@ class MemoListViewController: BaseViewController {
     
     var headerList = ["고정된 메모", "메모"]
     
-    var memoTitleList = [String]()
-    var filteredList = [String]()
+    var memoTitleList: [String] = []
+    
+    var allInfoList: [AllInfo] = []
+//    var filteredList: [String] = []
+    
+    var filteredCellNumber = 0
     
     var tasks: Results<UserMemo>! {
         didSet {
@@ -29,6 +33,7 @@ class MemoListViewController: BaseViewController {
     
     var fixedTasks: Results<UserMemo>!
     var unFixedTasks: Results<UserMemo>!
+    var searchTasks: Results<UserMemo>!
 
     override func loadView() {
         self.view = mainView
@@ -40,6 +45,7 @@ class MemoListViewController: BaseViewController {
         mainView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "customHeader")
         
         print(repository.localRealm.configuration.fileURL!)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,11 +53,12 @@ class MemoListViewController: BaseViewController {
         
         tasks = repository.fetch()
         
+        // MARK: 메모 타이틀 저장
         for i in 0..<tasks.count {
             memoTitleList.append(tasks[i].memoTitle)
         }
         
-        print(memoTitleList)
+//        print("filterList : \(filteredList)")
     }
     
     override func configure() {
@@ -74,74 +81,111 @@ class MemoListViewController: BaseViewController {
 extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if tasks.isEmpty {
-            return 0
+        
+        if self.isFiltering {
+            return 1
         } else {
-            return 2
+            if tasks.isEmpty {
+                return 0
+            } else {
+                return 2
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return  fixedTasks.count
+    
+        if self.isFiltering {
+            // MARK: 서치중 셀 개수
+            filteredCellNumber = searchTasks.count
+            return searchTasks.count
         } else {
-            return unFixedTasks.count
+            if section == 0 {
+                return fixedTasks.count
+            } else {
+                return unFixedTasks.count
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "customHeader")
             
-        header?.textLabel?.text = headerList[section]
-        header?.textLabel?.font = .systemFont(ofSize: 20)
+        if self.isFiltering {
+            header?.textLabel?.text = "\(filteredCellNumber)개 찾음"
+            header?.textLabel?.font = .systemFont(ofSize: 20)
+        } else {
+            header?.textLabel?.text = headerList[section]
+            header?.textLabel?.font = .systemFont(ofSize: 20)
+        }
         
         return header
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoListTableViewCell.reuseIdentifier, for: indexPath) as? MemoListTableViewCell else { return UITableViewCell() }
         
-        // MARK: CornerRadius
+        // MARK: Cell CornerRadius
         if indexPath.row == 0 {
             cell.makeRoundCorner(cornerRadius: Constants.Design.CornerRadius, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         } else if indexPath.row == tasks.count - 1 {
             cell.makeRoundCorner(cornerRadius: Constants.Design.CornerRadius, maskedCorners: [.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
         }
         
-        if indexPath.section == 0 {
-            cell.memoTitleLabel.text = fixedTasks[indexPath.row].memoTitle
-            cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: fixedTasks[indexPath.row].memoDate)
-            cell.memoContentLabel.text = fixedTasks[indexPath.row].memoContent
+        if self.isFiltering {
+            let searchBarText = self.navigationItem.searchController?.searchBar.text!
+            
+            cell.memoTitleLabel.text = searchTasks[indexPath.row].memoTitle
+            cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: searchTasks[indexPath.row].memoDate)
+            cell.memoContentLabel.text = searchTasks[indexPath.row].memoContent
+            
+//            배열로 필터링하기
+//            cell.memoTitleLabel.text = self.filteredList[indexPath.row]
+//            cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: tasks[indexPath.row].memoDate)
+//            cell.memoContentLabel.text = tasks[indexPath.row].memoContent
+            
+            // MARK: 텍스트하이라이트
+            cell.memoTitleLabel.setHighlighted(cell.memoTitleLabel.text!, with: searchBarText!)
+            cell.memoContentLabel.setHighlighted(cell.memoContentLabel.text!, with: searchBarText!)
+//            cell.memoTitleLabel.setHighlighted(cell.memoContentLabel.text!, with: searchBarText!)
         } else {
-            cell.memoTitleLabel.text = unFixedTasks[indexPath.row].memoTitle
-            cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: unFixedTasks[indexPath.row].memoDate)
-            cell.memoContentLabel.text = unFixedTasks[indexPath.row].memoContent
+            if indexPath.section == 0 {
+                cell.memoTitleLabel.text = fixedTasks[indexPath.row].memoTitle
+                cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: fixedTasks[indexPath.row].memoDate)
+                cell.memoContentLabel.text = fixedTasks[indexPath.row].memoContent
+            } else {
+                cell.memoTitleLabel.text = unFixedTasks[indexPath.row].memoTitle
+                cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: unFixedTasks[indexPath.row].memoDate)
+                cell.memoContentLabel.text = unFixedTasks[indexPath.row].memoContent
+            }
         }
-        
+    
         cell.backgroundColor = .systemGray6
         return cell
     }
+    
     
     // MARK: Swipe
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let favorite = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
            
-            guard self.fixedTasks.count > 5 else {
-                self.showAlert(title: "5개를 초과해 등록할 수 없습니다.")
-                return
-            }
-            
             if indexPath.section == 0 {
                 self.repository.updateFavorite(item: self.fixedTasks[indexPath.row])
             } else {
+                // MARK: 5개 이상 Fix 불가
+                guard self.fixedTasks.count < 5 else {
+                    self.showAlert(title: "5개를 초과해 등록할 수 없습니다.")
+                    return
+                }
+                
                 self.repository.updateFavorite(item: self.unFixedTasks[indexPath.row])
             }
             
             self.fetchRealm()
         }
-        
-//        print("favorite: \(tasks[indexPath.row].favorite)")
         
         let image = indexPath.section == 0 ? "pin.slash.fill" : "pin.fill"
         

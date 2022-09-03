@@ -40,7 +40,7 @@ class WriteViewController: BaseViewController {
         navigationController?.isToolbarHidden = false
     }
     
-    // 완료버튼클릭
+    // MARK: 완료버튼클릭
     @objc func doneButtonClicked() {
         let content = mainView.memoTextView.text.components(separatedBy: "\n")
         let title = content[0]
@@ -57,7 +57,7 @@ class WriteViewController: BaseViewController {
         repository.addMemo(title: title, date: Date(), content: subTitle, favorite: false)
     }
     
-    // 공유버튼클릭
+    // MARK: 공유버튼클릭
     @objc func shareButtonClicked() {
         
     }
