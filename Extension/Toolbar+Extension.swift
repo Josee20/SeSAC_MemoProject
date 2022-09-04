@@ -25,6 +25,8 @@ extension MemoListViewController {
         let vc = WriteViewController()
         self.navigationController?.pushViewController(vc, animated: true)
         vc.navigationController?.isToolbarHidden = true
+        vc.backButtonTitle = "메모"
+        
     }
     
 }

@@ -38,9 +38,9 @@ class MemoListViewController: BaseViewController {
         super.viewDidLoad()
     
         mainView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "customHeader")
-        
         print(repository.localRealm.configuration.fileURL!)
        
+        showPopUpView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,15 +48,7 @@ class MemoListViewController: BaseViewController {
         
         tasks = repository.fetch()
         setNavigationTitle(numberOfMemo: tasks.count)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        let vc = PopUpViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true)
     }
     
     override func configure() {
@@ -73,6 +65,18 @@ class MemoListViewController: BaseViewController {
     func fetchRealm() {
         tasks = repository.fetch()
     }
+    
+    func showPopUpView() {
+        guard !UserDefaults.standard.bool(forKey: "first") else {
+            return
+        }
+        
+        let vc = PopUpViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .overFullScreen
+        present(nav, animated: true)
+    }
+    
 }
 
 extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -152,7 +156,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.memoTitleLabel.text = searchTasks[indexPath.row].memoTitle
             cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: searchTasks[indexPath.row].memoDate)
-            cell.memoContentLabel.text = searchTasks[indexPath.row].memoContent
+            cell.memoContentLabel.text = searchTasks[indexPath.row].memoSubtitle
             
             // MARK: 텍스트하이라이트
             cell.memoTitleLabel.setHighlighted(cell.memoTitleLabel.text!, with: searchBarText!)
@@ -161,11 +165,11 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.section == 0 {
                 cell.memoTitleLabel.text = fixedTasks[indexPath.row].memoTitle
                 cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: fixedTasks[indexPath.row].memoDate)
-                cell.memoContentLabel.text = fixedTasks[indexPath.row].memoContent
+                cell.memoContentLabel.text = fixedTasks[indexPath.row].memoSubtitle
             } else {
                 cell.memoTitleLabel.text = unFixedTasks[indexPath.row].memoTitle
                 cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: unFixedTasks[indexPath.row].memoDate)
-                cell.memoContentLabel.text = unFixedTasks[indexPath.row].memoContent
+                cell.memoContentLabel.text = unFixedTasks[indexPath.row].memoSubtitle
             }
         }
     
@@ -173,23 +177,30 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        if isFiltering {
-//            if indexPath.row == 0 {
-//                let vc = WriteViewController()
-//                vc.navigationController?.pushViewController(vc, animated: true)
-//            }
-//        } else {
-//            if indexPath.section == 0 {
-//                let vc = WriteViewController()
-//                vc.navigationController?.pushViewController(vc, animated: true)
-//            } else {
-//                let vc = WriteViewController()
-//                vc.navigationController?.pushViewController(vc, animated: true)
-//            }
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if isFiltering {
+            let vc = WriteViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            vc.mainView.memoTextView.text = searchTasks[indexPath.row].memoContent
+            vc.backButtonTitle = "검색"
+            vc.objectID = searchTasks[indexPath.row].objectID
+        } else {
+            if indexPath.section == 0 {
+                let vc = WriteViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                vc.mainView.memoTextView.text = fixedTasks[indexPath.row].memoContent
+                vc.backButtonTitle = "검색"
+                vc.objectID = fixedTasks[indexPath.row].objectID
+            } else {
+                let vc = WriteViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                vc.mainView.memoTextView.text = unFixedTasks[indexPath.row].memoContent
+                vc.backButtonTitle = "검색"
+                vc.objectID = unFixedTasks[indexPath.row].objectID
+            }
+        }
+    }
     
     // MARK: Swipe
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -243,7 +254,6 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         
         self.fetchRealm()
     }
-    
 }
 
 

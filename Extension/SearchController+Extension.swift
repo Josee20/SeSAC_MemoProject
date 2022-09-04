@@ -26,13 +26,10 @@ extension MemoListViewController {
     func setSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "검색"
-        
         searchController.searchResultsUpdater = self
-        
         
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
-        
     }
 }
 
@@ -41,7 +38,6 @@ extension MemoListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let inputText = searchController.searchBar.text?.lowercased() else { return }
         self.searchTasks = self.tasks.filter("memoTitle CONTAINS[c] %@ OR memoContent CONTAINS[c] %@", inputText, inputText)
-//        self.filteredList = self.memoTitleList.filter { $0.lowercased().contains(inputText) }
         self.mainView.tableView.reloadData()
     }
 }

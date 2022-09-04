@@ -24,7 +24,7 @@ class WriteView: BaseView {
     override func setConstraints() {
         
         memoTextView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide)
+            $0.topMargin.equalTo(20)
             $0.trailingMargin.bottomMargin.equalTo(-20)
             $0.leadingMargin.equalTo(20)
         }

@@ -29,23 +29,10 @@ class MemoListTableViewCell: BaseTableViewCell {
         return view
     }()
     
-//    let stackView: UIStackView = {
-//        let view = UIStackView()
-//        view.axis = .horizontal
-//        view.distribution = .fillEqually
-//        view.alignment = .top
-//        view.spacing = 2
-//        return view
-//    }()
-    
     override func configure() {
         self.addSubview(memoTitleLabel)
         self.addSubview(memoDateLabel)
         self.addSubview(memoContentLabel)
-        
-        
-    
-//        [memoDateLabel, memoContentLabel].forEach { stackView.addArrangedSubview($0) }
     }
     
     override func setConstraints() {
@@ -68,12 +55,7 @@ class MemoListTableViewCell: BaseTableViewCell {
             $0.bottomMargin.equalTo(-spacing)
             
         }
-        
-//        stackView.snp.makeConstraints {
-//            $0.leadingMargin.topMargin.equalTo(spacing)
-//            $0.bottomMargin.trailingMargin.equalTo(-spacing)
-//
-//        }
+
     }
 
 }

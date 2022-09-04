@@ -10,14 +10,6 @@ import UIKit
 
 class PopUpView: BaseView {
     
-//            """
-//            처음 오셧군요!
-//            환영합니다 :)
-//
-//            당신만의 메모를 작성하고
-//            관리해보세요!
-//            """
-    
     let backView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray6

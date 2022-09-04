@@ -17,11 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
-//        let vc = PopUpViewController()
-//        let nav = UINavigationController(rootViewController: vc)
-//        nav.modalPresentationStyle = .overFullScreen
-//        window?.rootViewController = nav
-//        window?.makeKeyAndVisible()
+
         
 //        let vc = PopUpViewController()
         let vc = MemoListViewController()
@@ -29,15 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         
-//        do {
-//            sleep(1)
-//            let vc2 = PopUpViewController()
-//            let nav2 = UINavigationController(rootViewController: vc2)
-//            nav2.modalPresentationStyle = .overFullScreen
-//            window?.rootViewController = nav2
-//            window?.makeKeyAndVisible()
-//            
-//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

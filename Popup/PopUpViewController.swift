@@ -19,8 +19,7 @@ class PopUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        view.backgroundColor = .clear
-//        view.backgroundColor = .systemBackground.withAlphaComponent(0.8)
+        view.backgroundColor = .systemBackground.withAlphaComponent(0.8)
     }
     
     override func configure() {
@@ -28,10 +27,9 @@ class PopUpViewController: BaseViewController {
     }
     
     @objc func checkButtonClicked() {
-        let vc = MemoListViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true)
+        UserDefaults.standard.set(true, forKey: "first")
+        dismiss(animated: true)
+        
     }
     
 }

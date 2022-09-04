@@ -26,3 +26,14 @@ extension MemoListViewController {
     }
 }
 
+extension WriteViewController {
+    func setNavigationAreaBackgroundColor() {
+        let navibarAppearance = UINavigationBarAppearance()
+
+        navibarAppearance.backgroundColor = .systemGray6
+
+        self.navigationItem.scrollEdgeAppearance = navibarAppearance
+        self.navigationItem.standardAppearance = navibarAppearance
+    }
+}
+

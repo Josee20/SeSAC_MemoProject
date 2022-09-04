@@ -12,11 +12,13 @@ import RealmSwift
 
 protocol UserMemoRepositoryType {
     func fetch() -> Results<UserMemo>
-    func addMemo(title: String, date: Date, content: String, favorite:Bool)
+    func addMemo(title: String, date: Date, subTitle: String, content: String, favorite: Bool)
+    func updateMemo(objectID: ObjectId, title: String, date: Date, subTitle: String, content: String)
     func updateFavorite(item: UserMemo)
     func delete(item: UserMemo?)
     func fetchFixFilter() -> Results<UserMemo>
     func fetchUnfixFilter() -> Results<UserMemo>
+    
 }
 
 class UserMemoRepository: UserMemoRepositoryType {
@@ -27,9 +29,10 @@ class UserMemoRepository: UserMemoRepositoryType {
         return localRealm.objects(UserMemo.self).sorted(byKeyPath: "memoDate", ascending: false)
     }
     
-    func addMemo(title: String, date: Date, content: String, favorite: Bool) {
+    // 메모추가
+    func addMemo(title: String, date: Date, subTitle: String, content: String, favorite: Bool) {
         
-        let task = UserMemo(memoTitle: title, memoDate: date, memoContent: content, favorite: favorite)
+        let task = UserMemo(memoTitle: title, memoDate: date, memoSubtitle: subTitle, memoContent: content, favorite: favorite)
         
         do {
             try localRealm.write {
@@ -40,6 +43,19 @@ class UserMemoRepository: UserMemoRepositoryType {
         }
     }
     
+    // 테이블뷰셀 누르면 메모 업데이트
+    func updateMemo(objectID: ObjectId, title: String, date: Date, subTitle: String, content: String) {
+        
+        do {
+            try localRealm.write {
+                localRealm.create(UserMemo.self, value: ["objectID": objectID, "memoTitle": title, "memoDate":date, "memoSubtitle":subTitle, "memoContent":content], update: .modified)
+            }
+        } catch {
+            print("update error")
+        }
+    }
+    
+    // Fix Unfix
     func updateFavorite(item: UserMemo) {
         do {
             try localRealm.write {
@@ -50,6 +66,7 @@ class UserMemoRepository: UserMemoRepositoryType {
         }
     }
     
+    // 셀 삭제
     func delete(item: UserMemo?) {
         do {
             try localRealm.write {
