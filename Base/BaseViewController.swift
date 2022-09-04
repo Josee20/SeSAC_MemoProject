@@ -29,6 +29,12 @@ class BaseViewController: UIViewController, UINavigationControllerDelegate {
         alert.addAction(ok)
         present(alert, animated: true)
     }
+    
+    func numFormat(for number: Int) -> String {
+        let numberFormat = NumberFormatter()
+        numberFormat.numberStyle = .decimal
+        return numberFormat.string(for: number)!
+    }
 }
 
     

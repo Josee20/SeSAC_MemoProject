@@ -41,6 +41,9 @@ class MemoListViewController: BaseViewController {
         print(repository.localRealm.configuration.fileURL!)
        
         showPopUpView()
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,6 +129,9 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let yesterday = Date() - 86400
+        let aWeekAgo = Date() - 86400 * 7
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoListTableViewCell.reuseIdentifier, for: indexPath) as? MemoListTableViewCell else { return UITableViewCell() }
         
         // MARK: Cell CornerRadius
@@ -155,7 +161,16 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             let searchBarText = self.navigationItem.searchController?.searchBar.text!
             
             cell.memoTitleLabel.text = searchTasks[indexPath.row].memoTitle
-            cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: searchTasks[indexPath.row].memoDate)
+            
+            // Filtering Date 형태
+            if searchTasks[indexPath.row].memoDate >= yesterday {
+                cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: searchTasks[indexPath.row].memoDate)
+            } else if searchTasks[indexPath.row].memoDate < yesterday && searchTasks[indexPath.row].memoDate >= aWeekAgo {
+                cell.memoDateLabel.text = DateFormatChange.shared.weeklyDateFormat.string(from: searchTasks[indexPath.row].memoDate)
+            } else {
+                cell.memoDateLabel.text = DateFormatChange.shared.otherDateFormat.string(from: searchTasks[indexPath.row].memoDate)
+            }
+            
             cell.memoContentLabel.text = searchTasks[indexPath.row].memoSubtitle
             
             // MARK: 텍스트하이라이트
@@ -164,11 +179,29 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             if indexPath.section == 0 {
                 cell.memoTitleLabel.text = fixedTasks[indexPath.row].memoTitle
-                cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: fixedTasks[indexPath.row].memoDate)
+                
+                // Fixed Date형태
+                if fixedTasks[indexPath.row].memoDate >= yesterday {
+                    cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: fixedTasks[indexPath.row].memoDate)
+                } else if fixedTasks[indexPath.row].memoDate < yesterday && fixedTasks[indexPath.row].memoDate >= aWeekAgo {
+                    cell.memoDateLabel.text = DateFormatChange.shared.weeklyDateFormat.string(from: fixedTasks[indexPath.row].memoDate)
+                } else {
+                    cell.memoDateLabel.text = DateFormatChange.shared.otherDateFormat.string(from: fixedTasks[indexPath.row].memoDate)
+                }
+                
                 cell.memoContentLabel.text = fixedTasks[indexPath.row].memoSubtitle
             } else {
                 cell.memoTitleLabel.text = unFixedTasks[indexPath.row].memoTitle
-                cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: unFixedTasks[indexPath.row].memoDate)
+                
+                // UnFixed Date형태
+                if unFixedTasks[indexPath.row].memoDate >= yesterday {
+                    cell.memoDateLabel.text = DateFormatChange.shared.todayDateFormat.string(from: unFixedTasks[indexPath.row].memoDate)
+                } else if unFixedTasks[indexPath.row].memoDate < yesterday && unFixedTasks[indexPath.row].memoDate >= aWeekAgo {
+                    cell.memoDateLabel.text = DateFormatChange.shared.weeklyDateFormat.string(from: unFixedTasks[indexPath.row].memoDate)
+                } else {
+                    cell.memoDateLabel.text = DateFormatChange.shared.otherDateFormat.string(from: unFixedTasks[indexPath.row].memoDate)
+                }
+                
                 cell.memoContentLabel.text = unFixedTasks[indexPath.row].memoSubtitle
             }
         }

@@ -11,7 +11,7 @@ extension MemoListViewController {
     
     // MARK: 네비게이션 타이틀
     func setNavigationTitle(numberOfMemo: Int) {
-        self.title = "\(numberOfMemo)개의 메모"
+        self.title = "\(numFormat(for: numberOfMemo))개의 메모"
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     

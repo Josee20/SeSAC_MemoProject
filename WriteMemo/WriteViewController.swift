@@ -68,7 +68,18 @@ class WriteViewController: BaseViewController {
     
     // MARK: 공유버튼클릭
     @objc func shareButtonClicked() {
-
+        
+        let content = mainView.memoTextView.text
+        
+        let shareText: String = content!
+        var shareObject = [String]()
+        
+        shareObject.append(shareText)
+        
+        let activityViewController = UIActivityViewController(activityItems : shareObject, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
 }
