@@ -40,7 +40,7 @@ class MemoListViewController: BaseViewController {
         mainView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "customHeader")
         
         print(repository.localRealm.configuration.fileURL!)
-        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +48,15 @@ class MemoListViewController: BaseViewController {
         
         tasks = repository.fetch()
         setNavigationTitle(numberOfMemo: tasks.count)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let vc = PopUpViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
     
     override func configure() {
@@ -164,21 +173,23 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if isFiltering {
-            
-        } else {
-            indexPath.section == 0 {
-                
-            } else {
-                
-            }
-        }
-    }
-    
-    
-    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        if isFiltering {
+//            if indexPath.row == 0 {
+//                let vc = WriteViewController()
+//                vc.navigationController?.pushViewController(vc, animated: true)
+//            }
+//        } else {
+//            if indexPath.section == 0 {
+//                let vc = WriteViewController()
+//                vc.navigationController?.pushViewController(vc, animated: true)
+//            } else {
+//                let vc = WriteViewController()
+//                vc.navigationController?.pushViewController(vc, animated: true)
+//            }
+//        }
+//    }
     
     // MARK: Swipe
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -195,7 +206,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                     
                     // MARK: 5개 이상 Fix 불가
                     guard self.fixedTasks.count < 5 else {
-                        self.showAlert(title: "5개를 초과해 등록할 수 없습니다.")
+                        self.showAlert(title: "5개까지 등록 가능합니다.")
                         return
                     }
                     
@@ -234,6 +245,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
 
 
 

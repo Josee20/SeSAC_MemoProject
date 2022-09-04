@@ -14,19 +14,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
-//        window = UIWindow(windowScene: scene)
-//
-//        let viewController = MemoListViewController()
-//        let navigationController = UINavigationController(rootViewController: viewController)
-//        window?.rootViewController = navigationController
-//        window?.makeKeyAndVisible()
         
         window = UIWindow(windowScene: scene)
         
-        let viewController = MemoListViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        window?.rootViewController = navigationController
+//        let vc = PopUpViewController()
+//        let nav = UINavigationController(rootViewController: vc)
+//        nav.modalPresentationStyle = .overFullScreen
+//        window?.rootViewController = nav
+//        window?.makeKeyAndVisible()
+        
+//        let vc = PopUpViewController()
+        let vc = MemoListViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        window?.rootViewController = nav
         window?.makeKeyAndVisible()
+        
+//        do {
+//            sleep(1)
+//            let vc2 = PopUpViewController()
+//            let nav2 = UINavigationController(rootViewController: vc2)
+//            nav2.modalPresentationStyle = .overFullScreen
+//            window?.rootViewController = nav2
+//            window?.makeKeyAndVisible()
+//            
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -39,6 +50,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
+        
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

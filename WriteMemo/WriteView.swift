@@ -17,6 +17,8 @@ class WriteView: BaseView {
     
     override func configureUI() {
         self.addSubview(memoTextView)
+        
+        memoTextView.becomeFirstResponder()
     }
     
     override func setConstraints() {

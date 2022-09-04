@@ -17,13 +17,10 @@ protocol UserMemoRepositoryType {
     func delete(item: UserMemo?)
     func fetchFixFilter() -> Results<UserMemo>
     func fetchUnfixFilter() -> Results<UserMemo>
-    func sortMemoList() -> Results<UserMemo>
 }
 
 class UserMemoRepository: UserMemoRepositoryType {
-    
-    
-  
+
     let localRealm = try! Realm()
     
     func fetch() -> Results<UserMemo> {
@@ -64,15 +61,11 @@ class UserMemoRepository: UserMemoRepositoryType {
     }
     
     func fetchFixFilter() -> Results<UserMemo> {
-        return localRealm.objects(UserMemo.self).filter("favorite == true")
+        return localRealm.objects(UserMemo.self).filter("favorite == true").sorted(byKeyPath: "memoDate", ascending: false)
     }
     
     func fetchUnfixFilter() -> Results<UserMemo> {
-        return localRealm.objects(UserMemo.self).filter("favorite == false")
-    }
-    
-    func sortMemoList() -> Results<UserMemo> {
-        return localRealm.objects(UserMemo.self).sorted(byKeyPath: "favorite", ascending: false)
+        return localRealm.objects(UserMemo.self).filter("favorite == false").sorted(byKeyPath: "memoDate", ascending: false)
     }
     
 }

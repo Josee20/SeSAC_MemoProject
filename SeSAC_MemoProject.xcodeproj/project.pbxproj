@@ -12,6 +12,8 @@
 		49073C9528C3290500BCC8BA /* Navigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49073C9428C3290500BCC8BA /* Navigation+Extension.swift */; };
 		49073C9728C3749000BCC8BA /* textHighlight+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49073C9628C3749000BCC8BA /* textHighlight+Extension.swift */; };
 		49073C9928C3C46500BCC8BA /* MemoListTableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49073C9828C3C46500BCC8BA /* MemoListTableView+Extension.swift */; };
+		4913A5EE28C3DAA70010A57B /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913A5ED28C3DAA70010A57B /* PopUpView.swift */; };
+		4913A5F028C3DAC90010A57B /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913A5EF28C3DAC90010A57B /* PopUpViewController.swift */; };
 		496C579228C094F700C84B9D /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C579128C094F700C84B9D /* ReusableProtocol.swift */; };
 		496C579528C0A70C00C84B9D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C579428C0A70C00C84B9D /* Constants.swift */; };
 		496C579728C0A71600C84B9D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C579628C0A71600C84B9D /* Color.swift */; };
@@ -43,6 +45,8 @@
 		49073C9428C3290500BCC8BA /* Navigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Extension.swift"; sourceTree = "<group>"; };
 		49073C9628C3749000BCC8BA /* textHighlight+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "textHighlight+Extension.swift"; sourceTree = "<group>"; };
 		49073C9828C3C46500BCC8BA /* MemoListTableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemoListTableView+Extension.swift"; sourceTree = "<group>"; };
+		4913A5ED28C3DAA70010A57B /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		4913A5EF28C3DAC90010A57B /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		496C579128C094F700C84B9D /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		496C579428C0A70C00C84B9D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		496C579628C0A71600C84B9D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -87,6 +91,15 @@
 				496C57A828C10D7600C84B9D /* DateFormatChange.swift */,
 			);
 			path = DateFormat;
+			sourceTree = "<group>";
+		};
+		4913A5EC28C3DA810010A57B /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				4913A5ED28C3DAA70010A57B /* PopUpView.swift */,
+				4913A5EF28C3DAC90010A57B /* PopUpViewController.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		496C579328C0A6E000C84B9D /* Constants */ = {
@@ -137,6 +150,7 @@
 				49073C8F28C1DB7800BCC8BA /* DateFormat */,
 				496C579828C0AD5900C84B9D /* Extension */,
 				496C579328C0A6E000C84B9D /* Constants */,
+				4913A5EC28C3DA810010A57B /* Popup */,
 				496C57A128C0BF3000C84B9D /* WriteMemo */,
 				497A632528BF468C00008F03 /* MemoList */,
 				497A631728BF3D1300008F03 /* Base */,
@@ -271,8 +285,10 @@
 				497A632928BF46D600008F03 /* MemoListViewController.swift in Sources */,
 				496C579D28C0BC0100C84B9D /* RealmModel.swift in Sources */,
 				496C579528C0A70C00C84B9D /* Constants.swift in Sources */,
+				4913A5EE28C3DAA70010A57B /* PopUpView.swift in Sources */,
 				496C57A328C0BF6700C84B9D /* WriteViewController.swift in Sources */,
 				497A632B28BF46FB00008F03 /* MemoListTableViewCell.swift in Sources */,
+				4913A5F028C3DAC90010A57B /* PopUpViewController.swift in Sources */,
 				496C57A928C10D7600C84B9D /* DateFormatChange.swift in Sources */,
 				496C579228C094F700C84B9D /* ReusableProtocol.swift in Sources */,
 				497A631B28BF3D3300008F03 /* BaseViewController.swift in Sources */,
