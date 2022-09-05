@@ -40,10 +40,7 @@ class MemoListViewController: BaseViewController {
         mainView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "customHeader")
         print(repository.localRealm.configuration.fileURL!)
        
-        showPopUpView()
-        
-        
-        
+        showPopUpView() 
     }
     
     override func viewWillAppear(_ animated: Bool) {
