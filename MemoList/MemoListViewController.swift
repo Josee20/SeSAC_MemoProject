@@ -40,7 +40,19 @@ class MemoListViewController: BaseViewController {
         mainView.tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "customHeader")
         print(repository.localRealm.configuration.fileURL!)
        
-        showPopUpView() 
+        showPopUpView()
+        
+        // MARK: - 마이그레이션
+        
+        // 1. fileURL
+        print("FileURL: \(repository.localRealm.configuration.fileURL)")
+        
+        do {
+            let version = try schemaVersionAtURL(repository.localRealm.configuration.fileURL!)
+            print("Schema Version : \(version)")
+        } catch {
+            print(error)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,7 +169,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         if self.isFiltering {
             let searchBarText = self.navigationItem.searchController?.searchBar.text!
             
-            cell.memoTitleLabel.text = searchTasks[indexPath.row].memoTitle
+            cell.memoTitleLabel.text = searchTasks[indexPath.row].title
             
             // Filtering Date 형태
             if searchTasks[indexPath.row].memoDate >= yesterday {
@@ -175,7 +187,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             cell.memoContentLabel.setHighlighted(cell.memoContentLabel.text!, with: searchBarText!)
         } else {
             if indexPath.section == 0 {
-                cell.memoTitleLabel.text = fixedTasks[indexPath.row].memoTitle
+                cell.memoTitleLabel.text = fixedTasks[indexPath.row].title
                 
                 // Fixed Date형태
                 if fixedTasks[indexPath.row].memoDate >= yesterday {
@@ -188,7 +200,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 cell.memoContentLabel.text = fixedTasks[indexPath.row].memoSubtitle
             } else {
-                cell.memoTitleLabel.text = unFixedTasks[indexPath.row].memoTitle
+                cell.memoTitleLabel.text = unFixedTasks[indexPath.row].title
                 
                 // UnFixed Date형태
                 if unFixedTasks[indexPath.row].memoDate >= yesterday {

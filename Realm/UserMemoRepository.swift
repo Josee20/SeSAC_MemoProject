@@ -84,5 +84,4 @@ class UserMemoRepository: UserMemoRepositoryType {
     func fetchUnfixFilter() -> Results<UserMemo> {
         return localRealm.objects(UserMemo.self).filter("favorite == false").sorted(byKeyPath: "memoDate", ascending: false)
     }
-    
 }

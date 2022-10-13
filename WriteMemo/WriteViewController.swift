@@ -71,9 +71,6 @@ class WriteViewController: BaseViewController {
         for i in 1..<contentTitle.count {
             subTitle += contentTitle[i]
         }
-        
-        print("subtitle : \(subTitle)")
-        print("textViewisEmpty: \(textViewisEmpty)")
     
         // MARK: 메모버튼클릭 OR 테이블뷰셀 클릭해서 수정
         if backButtonTitle == "메모" {

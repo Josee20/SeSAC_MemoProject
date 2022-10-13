@@ -9,7 +9,6 @@ import UIKit
 
 protocol ReusableViewProtocol: AnyObject {
     static var reuseIdentifier: String { get }
-    
 }
 
 extension UIViewController: ReusableViewProtocol {

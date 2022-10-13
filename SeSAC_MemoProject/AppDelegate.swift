@@ -6,14 +6,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        aboutRealmMigration()
         
         return true
     }
@@ -31,7 +31,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+}
 
+extension AppDelegate {
+    func aboutRealmMigration() {
+        let config = Realm.Configuration(schemaVersion: 6) { migration, oldSchemaVersion in
 
+            if oldSchemaVersion < 1 {
+
+            }
+
+            if oldSchemaVersion < 2 {
+
+            }
+            
+            if oldSchemaVersion < 3 {
+                migration.renameProperty(onType: UserMemo.className(), from: "memoTitle", to: "title")
+            }
+            
+            if oldSchemaVersion < 4 {
+                migration.enumerateObjects(ofType: UserMemo.className()) { oldObject, newObject in
+                    
+                    guard let new = newObject else { return }
+                    guard let old = oldObject else { return }
+                    
+                    new["memoDescription"] = "안녕하세요 \(old["title"])은 \(old["memoDate"])에 작성되었습니다"
+                }
+            }
+            
+            if oldSchemaVersion < 5 {
+                migration.enumerateObjects(ofType: UserMemo.className()) { oldObject, newObject in
+                    guard let new = newObject else { return }
+                    new["count"] = 100
+                }
+            }
+            
+            if oldSchemaVersion < 6 {
+                migration.enumerateObjects(ofType: UserMemo.className()) { oldObject, newObject in
+                    
+                    guard let new = newObject else { return }
+                    guard let old = oldObject else { return }
+                    
+                    new["count"] = old["count"]
+                }
+            }
+        }
+        
+        Realm.Configuration.defaultConfiguration = config
+    }
 }
 

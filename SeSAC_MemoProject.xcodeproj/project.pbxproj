@@ -454,6 +454,7 @@
 				DEVELOPMENT_TEAM = AW5HC5SGGG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSAC_MemoProject/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "이동기";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -482,6 +483,7 @@
 				DEVELOPMENT_TEAM = AW5HC5SGGG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSAC_MemoProject/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "이동기";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
