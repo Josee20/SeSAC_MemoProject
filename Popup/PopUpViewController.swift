@@ -19,6 +19,9 @@ class PopUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+//        DispatchQueue.global().async {
+//            self.view.backgroundColor = .systemBackground.withAlphaComponent(0.8)
+//        }
         view.backgroundColor = .systemBackground.withAlphaComponent(0.8)
     }
     

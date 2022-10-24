@@ -1,15 +1,15 @@
 //
-//  BaseView.swift
+//  BaseCollectionViewCell.swift
 //  SeSAC_MemoProject
 //
-//  Created by 이동기 on 2022/08/31.
+//  Created by 이동기 on 2022/10/23.
 //
 
 import UIKit
 
 import SnapKit
 
-class BaseView: UIView {
+class BaseCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,6 +24,4 @@ class BaseView: UIView {
     
     func configureUI() { }
     func setConstraints() { }
-    
-    
 }

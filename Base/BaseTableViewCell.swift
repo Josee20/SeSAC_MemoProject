@@ -5,8 +5,9 @@
 //  Created by 이동기 on 2022/08/31.
 //
 
-import Foundation
 import UIKit
+
+import SnapKit
 
 class BaseTableViewCell: UITableViewCell {
     
@@ -15,7 +16,6 @@ class BaseTableViewCell: UITableViewCell {
         
         configure()
         setConstraints()
-        
     }
     
     required init?(coder: NSCoder) {

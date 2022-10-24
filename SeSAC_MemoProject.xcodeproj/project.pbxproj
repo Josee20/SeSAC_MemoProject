@@ -18,7 +18,6 @@
 		496C579528C0A70C00C84B9D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C579428C0A70C00C84B9D /* Constants.swift */; };
 		496C579728C0A71600C84B9D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C579628C0A71600C84B9D /* Color.swift */; };
 		496C579D28C0BC0100C84B9D /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C579C28C0BC0100C84B9D /* RealmModel.swift */; };
-		496C57A028C0BC6000C84B9D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 496C579F28C0BC6000C84B9D /* RealmSwift */; };
 		496C57A328C0BF6700C84B9D /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C57A228C0BF6700C84B9D /* WriteViewController.swift */; };
 		496C57A528C0BF6E00C84B9D /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C57A428C0BF6E00C84B9D /* WriteView.swift */; };
 		496C57A728C0E36000C84B9D /* UserMemoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C57A628C0E36000C84B9D /* UserMemoRepository.swift */; };
@@ -37,6 +36,12 @@
 		497A632728BF46A600008F03 /* MemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A632628BF46A600008F03 /* MemoListView.swift */; };
 		497A632928BF46D600008F03 /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A632828BF46D600008F03 /* MemoListViewController.swift */; };
 		497A632B28BF46FB00008F03 /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A632A28BF46FB00008F03 /* MemoListTableViewCell.swift */; };
+		4981792B2903FF6300E0CD99 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4981792A2903FF6300E0CD99 /* RealmSwift */; };
+		4981792E29053CA200E0CD99 /* MemoFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981792D29053CA200E0CD99 /* MemoFolderView.swift */; };
+		4981793029053CE000E0CD99 /* MemoFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981792F29053CE000E0CD99 /* MemoFolderViewController.swift */; };
+		4981793229053D8E00E0CD99 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981793129053D8E00E0CD99 /* BaseCollectionViewCell.swift */; };
+		49817934290540B600E0CD99 /* MemoFolderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49817933290540B600E0CD99 /* MemoFolderModel.swift */; };
+		498179362905470500E0CD99 /* MemoFolderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498179352905470500E0CD99 /* MemoFolderCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +75,11 @@
 		497A632628BF46A600008F03 /* MemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListView.swift; sourceTree = "<group>"; };
 		497A632828BF46D600008F03 /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		497A632A28BF46FB00008F03 /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
+		4981792D29053CA200E0CD99 /* MemoFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoFolderView.swift; sourceTree = "<group>"; };
+		4981792F29053CE000E0CD99 /* MemoFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoFolderViewController.swift; sourceTree = "<group>"; };
+		4981793129053D8E00E0CD99 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		49817933290540B600E0CD99 /* MemoFolderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoFolderModel.swift; sourceTree = "<group>"; };
+		498179352905470500E0CD99 /* MemoFolderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoFolderCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				496C57A028C0BC6000C84B9D /* RealmSwift in Frameworks */,
+				4981792B2903FF6300E0CD99 /* RealmSwift in Frameworks */,
 				497A632228BF403E00008F03 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +160,7 @@
 				49073C8F28C1DB7800BCC8BA /* DateFormat */,
 				496C579828C0AD5900C84B9D /* Extension */,
 				496C579328C0A6E000C84B9D /* Constants */,
+				4981792C2904031B00E0CD99 /* MemoFolder */,
 				4913A5EC28C3DA810010A57B /* Popup */,
 				496C57A128C0BF3000C84B9D /* WriteMemo */,
 				497A632528BF468C00008F03 /* MemoList */,
@@ -187,6 +198,7 @@
 				497A631828BF3D2700008F03 /* BaseView.swift */,
 				497A631A28BF3D3300008F03 /* BaseViewController.swift */,
 				497A632328BF460500008F03 /* BaseTableViewCell.swift */,
+				4981793129053D8E00E0CD99 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -199,6 +211,17 @@
 				497A632A28BF46FB00008F03 /* MemoListTableViewCell.swift */,
 			);
 			path = MemoList;
+			sourceTree = "<group>";
+		};
+		4981792C2904031B00E0CD99 /* MemoFolder */ = {
+			isa = PBXGroup;
+			children = (
+				49817933290540B600E0CD99 /* MemoFolderModel.swift */,
+				4981792D29053CA200E0CD99 /* MemoFolderView.swift */,
+				4981792F29053CE000E0CD99 /* MemoFolderViewController.swift */,
+				498179352905470500E0CD99 /* MemoFolderCollectionViewCell.swift */,
+			);
+			path = MemoFolder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +242,7 @@
 			name = SeSAC_MemoProject;
 			packageProductDependencies = (
 				497A632128BF403E00008F03 /* SnapKit */,
-				496C579F28C0BC6000C84B9D /* RealmSwift */,
+				4981792A2903FF6300E0CD99 /* RealmSwift */,
 			);
 			productName = SeSAC_MemoProject;
 			productReference = 497A62FE28BF3C5E00008F03 /* SeSAC_MemoProject.app */;
@@ -251,7 +274,7 @@
 			mainGroup = 497A62F528BF3C5E00008F03;
 			packageReferences = (
 				497A632028BF403E00008F03 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				496C579E28C0BC6000C84B9D /* XCRemoteSwiftPackageReference "realm-swift" */,
+				498179292903FF6300E0CD99 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 497A62FF28BF3C5E00008F03 /* Products */;
 			projectDirPath = "";
@@ -286,10 +309,13 @@
 				496C579D28C0BC0100C84B9D /* RealmModel.swift in Sources */,
 				496C579528C0A70C00C84B9D /* Constants.swift in Sources */,
 				4913A5EE28C3DAA70010A57B /* PopUpView.swift in Sources */,
+				4981792E29053CA200E0CD99 /* MemoFolderView.swift in Sources */,
 				496C57A328C0BF6700C84B9D /* WriteViewController.swift in Sources */,
 				497A632B28BF46FB00008F03 /* MemoListTableViewCell.swift in Sources */,
+				4981793029053CE000E0CD99 /* MemoFolderViewController.swift in Sources */,
 				4913A5F028C3DAC90010A57B /* PopUpViewController.swift in Sources */,
 				496C57A928C10D7600C84B9D /* DateFormatChange.swift in Sources */,
+				4981793229053D8E00E0CD99 /* BaseCollectionViewCell.swift in Sources */,
 				496C579228C094F700C84B9D /* ReusableProtocol.swift in Sources */,
 				497A631B28BF3D3300008F03 /* BaseViewController.swift in Sources */,
 				49073C9328C3285B00BCC8BA /* Toolbar+Extension.swift in Sources */,
@@ -304,7 +330,9 @@
 				49073C9528C3290500BCC8BA /* Navigation+Extension.swift in Sources */,
 				497A632728BF46A600008F03 /* MemoListView.swift in Sources */,
 				497A632428BF460500008F03 /* BaseTableViewCell.swift in Sources */,
+				498179362905470500E0CD99 /* MemoFolderCollectionViewCell.swift in Sources */,
 				497A631928BF3D2700008F03 /* BaseView.swift in Sources */,
+				49817934290540B600E0CD99 /* MemoFolderModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,14 +554,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		496C579E28C0BC6000C84B9D /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
-			};
-		};
 		497A632028BF403E00008F03 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -542,18 +562,26 @@
 				kind = branch;
 			};
 		};
+		498179292903FF6300E0CD99 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.31.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		496C579F28C0BC6000C84B9D /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 496C579E28C0BC6000C84B9D /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		497A632128BF403E00008F03 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 497A632028BF403E00008F03 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		4981792A2903FF6300E0CD99 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 498179292903FF6300E0CD99 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
